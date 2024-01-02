@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -79,6 +80,7 @@ public class SoundDetectionService extends Service {
             @Override
             public void run() {
                 double amplitude = getAmplitude();
+
                 if (amplitude > 0) {
                     isSoundDetected = true;
                     resetTimer();
@@ -92,7 +94,7 @@ public class SoundDetectionService extends Service {
             }
         }, TIME_INTERVAL);
     }
-    private double getAmplitude() {
+    protected double getAmplitude() {
         if (mediaRecorder != null) {
             return 20 * Math.log10(mediaRecorder.getMaxAmplitude() /
                     32767.0);
