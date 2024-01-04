@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         textView=findViewById(R.id.text);
         button=findViewById(R.id.startbutton);
         SoundDetectionService soundDetectionService= new SoundDetectionService();
-
+// HALLO
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
