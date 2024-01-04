@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         textView=findViewById(R.id.text);
         button=findViewById(R.id.startbutton);
-        SoundDetectionService soundDetectionService= new SoundDetectionService();
-// HALLO
+        Sounderkennung soundDetectionService= new Sounderkennung();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
