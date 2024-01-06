@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         shakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity2.class);
+                Intent intent = new Intent(MainActivity.this, NewVibrationsSensor.class);
                 startActivity(intent);
             }
         });

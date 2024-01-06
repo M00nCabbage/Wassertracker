@@ -12,23 +12,21 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class VibrationsSensorNew extends AppCompatActivity implements SensorEventListener {
+public class NewVibrationsSensor extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor sensorAccelerometer;
-    private double SHAKE_THRESHOLD=4;
+    private double SHAKE_THRESHOLD=3;
     private TextView textView;
     private Button shakeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new_vibrations_sensor);
 
         textView=findViewById(R.id.text);
         shakeButton=findViewById(R.id.ShakeButton);
-        shakeButton.setText("Jetzt wird Vibration erkannt");
-        textView.setText(("in VibrationsSensorNew class"));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorAccelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
