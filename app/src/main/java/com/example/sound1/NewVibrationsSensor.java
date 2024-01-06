@@ -16,17 +16,19 @@ public class NewVibrationsSensor extends AppCompatActivity implements SensorEven
 
     private SensorManager sensorManager;
     private Sensor sensorAccelerometer;
-    private double SHAKE_THRESHOLD=3;
+    private double SHAKE_THRESHOLD=4;
     private TextView textView;
     private Button shakeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_vibrations_sensor);
+        setContentView(R.layout.activity_main);
 
         textView=findViewById(R.id.text);
         shakeButton=findViewById(R.id.ShakeButton);
+        shakeButton.setText("stoppe Vibrationserkennung");
+        textView.setText(("Noch keine Vibration erkannt"));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorAccelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
