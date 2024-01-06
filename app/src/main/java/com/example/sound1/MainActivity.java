@@ -10,19 +10,20 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private Button button;
+
+    private Button shakeButton;
     private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent serviceIntent = new Intent(this,
-                SoundDetectionService.class);
-        startService(serviceIntent);
 
         textView=findViewById(R.id.text);
         button=findViewById(R.id.startbutton);
-        Sounderkennung soundDetectionService= new Sounderkennung();
+        shakeButton=findViewById(R.id.ShakeButton);
+        //Sounderkennung soundDetectionService= new Sounderkennung();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,19 +33,28 @@ public class MainActivity extends AppCompatActivity {
                     button.setText("Jetzt wird Sound aufgenommen");
 
 
-                    textView.setText("Die aktuelle Amplitude ist: " +
-                            Double.toString(soundDetectionService.getAmplitude()));
+                   // textView.setText("Die aktuelle Amplitude ist: " +
+                   //         Double.toString(soundDetectionService.getAmplitude()));
               //  }
             /*    else{
                     button.setText("Start recording");
                 }*/
             }
         });
+
+        shakeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity2.class);
+                startActivity(intent);
+            }
+        });
     }
-    protected void onDestroy() {
+
+   /* protected void onDestroy() {
         super.onDestroy();
         Intent serviceIntent = new Intent(this,
                 SoundDetectionService.class);
         stopService(serviceIntent);
-    }
+    }*/
 }
