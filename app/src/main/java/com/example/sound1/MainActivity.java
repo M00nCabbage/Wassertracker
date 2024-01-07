@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button soundButton;
 
     private Button shakeButton;
     private TextView textView;
@@ -20,33 +20,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView=findViewById(R.id.text);
-        button=findViewById(R.id.startbutton);
+        soundButton=findViewById(R.id.SoundButton);
         shakeButton=findViewById(R.id.ShakeButton);
         //Sounderkennung soundDetectionService= new Sounderkennung();
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // if(button.getText().toString()!=
-                 //       "Jetzt wird Sound aufgenommen"){
-                    button.setText("Jetzt wird Sound aufgenommen");
-
-
-                   // textView.setText("Die aktuelle Amplitude ist: " +
-                   //         Double.toString(soundDetectionService.getAmplitude()));
-              //  }
-            /*    else{
-                    button.setText("Start recording");
-                }*/
+                Intent soundIntent = new Intent(MainActivity.this, Sounderkennung.class);
+                startActivity(soundIntent);
             }
         });
 
         shakeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewVibrationsSensor.class);
-                startActivity(intent);
+                Intent shakeIntent = new Intent(MainActivity.this, NewVibrationsSensor.class);
+                startActivity(shakeIntent);
             }
         });
     }
