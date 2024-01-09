@@ -24,6 +24,7 @@ public class Sounderkennung extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         soundButton=findViewById(R.id.SoundButton);
         soundButton.setText("Stopp");
+        
         try {
             startRecording();
         }
@@ -38,9 +39,9 @@ public class Sounderkennung extends AppCompatActivity {
 
         //irgendwas läuft hier falsch:
 
-        //mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        //mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        //mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         mediaRecorder.setOutputFile("/dev/null");
         mediaRecorder.prepare();

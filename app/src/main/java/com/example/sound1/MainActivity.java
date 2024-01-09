@@ -1,17 +1,23 @@
 package com.example.sound1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.Manifest;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button soundButton;
     private Button shakeButton;
     private TextView textView;
+    private static int MICROPHONE_PERMISSION_CODE=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +33,15 @@ public class MainActivity extends AppCompatActivity {
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent soundIntent = new Intent(MainActivity.this, Sounderkennung.class);
-                startActivity(soundIntent);
+                if (isMicrophonePresent()){
+                    getMicrophonePermission();
+
+                    Intent soundIntent = new Intent(MainActivity.this, Sounderkennung.class);
+                    startActivity(soundIntent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Schließe ein Mikrophon an", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -39,6 +52,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(shakeIntent);
             }
         });
+    }
+
+    private boolean isMicrophonePresent(){
+        if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private void getMicrophonePermission () {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                ==PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
+                    MICROPHONE_PERMISSION_CODE);
+
+        }
     }
 
    /* protected void onDestroy() {

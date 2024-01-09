@@ -31,7 +31,7 @@ public class NewVibrationsSensor extends AppCompatActivity implements SensorEven
         textView.setText(("Noch keine Vibration erkannt"));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensorAccelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensorAccelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     @Override
