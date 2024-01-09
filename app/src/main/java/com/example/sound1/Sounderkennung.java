@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class Sounderkennung extends AppCompatActivity {
     private MediaRecorder mediaRecorder;
     private Handler handler;
@@ -22,10 +24,16 @@ public class Sounderkennung extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         soundButton=findViewById(R.id.SoundButton);
         soundButton.setText("Stopp");
-        startRecording();
+        try {
+            startRecording();
+        }
+        catch (IOException | IllegalStateException e){
+            e.printStackTrace();
+        }
+
     }
 
-    private void startRecording() {
+    private void startRecording() throws IllegalStateException, IOException {
         mediaRecorder = new MediaRecorder();
 
         //irgendwas läuft hier falsch:
@@ -35,9 +43,9 @@ public class Sounderkennung extends AppCompatActivity {
         //mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         mediaRecorder.setOutputFile("/dev/null");
+        mediaRecorder.prepare();
 
         try {
-            mediaRecorder.prepare();
             mediaRecorder.start();
             updateSoundDetection();
         } catch (Exception e) {
