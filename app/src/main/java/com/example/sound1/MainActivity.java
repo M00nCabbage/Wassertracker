@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isMicrophonePresent()){
                     getMicrophonePermission();
 
-                    Intent soundIntent = new Intent(MainActivity.this, Sounderkennung.class);
+                    Intent soundIntent = new Intent(MainActivity.this, Sounderkennung2.class);
                     startActivity(soundIntent);
                 }
                 else{

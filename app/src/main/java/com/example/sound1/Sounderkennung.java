@@ -37,35 +37,37 @@ public class Sounderkennung extends AppCompatActivity {
     private void startRecording() throws IllegalStateException, IOException {
         mediaRecorder = new MediaRecorder();
 
-        //irgendwas läuft hier falsch:
-
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         mediaRecorder.setOutputFile("/dev/null");
         mediaRecorder.prepare();
+        //mit folgender Zeile läuft es nicht mehr
+        //text.setText("Vorm aufnehmen");
 
         try {
             mediaRecorder.start();
+            text.setText("Es wird Ton aufgenommen");
             updateSoundDetection();
         } catch (Exception e) {
             e.printStackTrace();
+            //auch hier Fehler
+            //text.setText("im Catch Block");
         }
     }
     private void updateSoundDetection() {
         handler.postDelayed(new Runnable() {
+            //Kommt nicht hierzu
             @Override
             public void run() {
                 double amplitude = getAmplitude();
 
                 if (amplitude > 0) {
                     isSoundDetected = true;
-                        text.setText("Es wird Ton aufgenommen");
+
                 } else {
-                    if (!isSoundDetected) {
                         text.setText("Noch nichts erkannt");
-                    }
                     isSoundDetected = false;
                 }
                 updateSoundDetection();
