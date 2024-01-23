@@ -1,11 +1,14 @@
 package com.example.sound1;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ public class NewVibrationsSensor extends AppCompatActivity implements SensorEven
     private Sensor sensorAccelerometer;
     private double SHAKE_THRESHOLD=4;
     private TextView textView;
+    private Button soundButton;
     private Button shakeButton;
 
     @Override
@@ -26,9 +30,22 @@ public class NewVibrationsSensor extends AppCompatActivity implements SensorEven
         setContentView(R.layout.activity_main);
 
         textView=findViewById(R.id.text);
-        shakeButton=findViewById(R.id.ShakeButton);
-        shakeButton.setText("stoppe Vibrationserkennung");
         textView.setText(("Noch keine Vibration erkannt"));
+        soundButton=findViewById(R.id.SoundButton);
+        soundButton.setBackgroundColor(Color.GRAY);
+        shakeButton=findViewById(R.id.ShakeButton);
+        shakeButton.setText("Stopp");
+        shakeButton.setBackgroundColor(Color.RED);
+
+        shakeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent soundIntent = new Intent(NewVibrationsSensor.this, MainActivity.class);
+                startActivity(soundIntent);
+            }
+        });
+
+
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorAccelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);

@@ -15,6 +15,7 @@ public class VibrationSensorActivity extends AppCompatActivity implements
     private Sensor accelerometer;
     private boolean isVibrating = false;
     private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

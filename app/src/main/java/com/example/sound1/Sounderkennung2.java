@@ -6,10 +6,13 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ public class Sounderkennung2 extends AppCompatActivity {
 
     private TextView text;
     private Button soundButton;
+    private Button shakeButton;
     private static int MICROPHONE_PERMISSION_CODE=200;
     MediaRecorder mediaRecorder;
 
@@ -28,18 +32,27 @@ public class Sounderkennung2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
+
+
                 soundButton=findViewById(R.id.SoundButton);
+                soundButton.setBackgroundColor(Color.RED);
+
+                shakeButton=findViewById(R.id.ShakeButton);
+                shakeButton.setBackgroundColor(Color.GRAY);
+        soundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    stopRecording();
+                    Toast.makeText(Sounderkennung2.this, "Recording has ended", Toast.LENGTH_LONG).show();
+                    Intent soundIntent = new Intent(Sounderkennung2.this, MainActivity.class);
+                    startActivity(soundIntent);
+            }
+        });
 
         if (isMicrophonePresent()) {
             getMicrophonePermission();
             startRecording();
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            stopRecording();
-            Toast.makeText(this, "Recording has ended", Toast.LENGTH_LONG).show();
+
         }
 
 
@@ -63,14 +76,18 @@ public class Sounderkennung2 extends AppCompatActivity {
 
         }
     }
-
+    //Sound von Skipy leran in Svm schmeisen
+    //Beschleunigung, Kompassapp livedemonstration
+    //evtl. statt Fouriertransformation mit Zeitreihe, FFt für Java
+    //Testdaten am Anfang von einer Stelle primär, später variable
+    //bis nächste Woche aufgezeichnete Daten+App
     public void startRecording(){
 
         try {
             mediaRecorder = new MediaRecorder();
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            mediaRecorder.setOutputFile(getRecordingFilePath());
+            mediaRecorder.setOutputFile(getRecordingFilePath()); //Idee in Buffer, evtl direkt von Mediarecorder, evtl. mit 2 Files
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mediaRecorder.prepare();
             mediaRecorder.start();
