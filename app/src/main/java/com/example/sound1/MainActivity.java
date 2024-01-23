@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button soundButton;
     private Button shakeButton;
     private TextView textView;
+    private TextView amplitudeTextView;
     private static int MICROPHONE_PERMISSION_CODE=200;
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         textView=findViewById(R.id.text);
         soundButton=findViewById(R.id.SoundButton);
         shakeButton=findViewById(R.id.ShakeButton);
+        amplitudeTextView=findViewById(R.id.text);
         //Sounderkennung soundDetectionService= new Sounderkennung();
 
 
