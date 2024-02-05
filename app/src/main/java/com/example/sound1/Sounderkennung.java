@@ -1,6 +1,9 @@
 package com.example.sound1;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -22,8 +25,8 @@ public class Sounderkennung extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        soundButton=findViewById(R.id.SoundButton);
-        soundButton.setText("Stopp");
+        soundButton=findViewById(R.id.soundButton);
+
         
         try {
             startRecording();
@@ -53,7 +56,7 @@ public class Sounderkennung extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             //auch hier Fehler
-            //text.setText("im Catch Block");
+            //text.setText("im Catch Block");´
         }
     }
     private void updateSoundDetection() {
@@ -83,7 +86,7 @@ public class Sounderkennung extends AppCompatActivity {
     }
     private void notifyNoSoundDetected() {
 
-        NotificationCostum.createNotification(this, "Water Reminder", "No sound detected for 1 minute.");
+        NotificationCostume.createNotification(this, "Water Reminder", "No sound detected for 1 minute.");
     }
 
     @Override
@@ -92,6 +95,19 @@ public class Sounderkennung extends AppCompatActivity {
         if (mediaRecorder != null) {
             mediaRecorder.release();
             mediaRecorder = null;
+        }
+    }
+    private void createNotificationChanel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "WaterReminderChanel";
+            String description = "Don't forget to drink water";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel chanel = new NotificationChannel("notifyWater", name, importance);
+            chanel.setDescription(description);
+
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(chanel);
         }
     }
 }

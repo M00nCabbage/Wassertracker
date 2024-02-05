@@ -31,9 +31,9 @@ public class NewVibrationsSensor extends AppCompatActivity implements SensorEven
 
         textView=findViewById(R.id.text);
         textView.setText(("Noch keine Vibration erkannt"));
-        soundButton=findViewById(R.id.SoundButton);
+        soundButton=findViewById(R.id.soundButton);
         soundButton.setBackgroundColor(Color.GRAY);
-        shakeButton=findViewById(R.id.ShakeButton);
+       // shakeButton=findViewById(R.id.ShakeButton);
         shakeButton.setText("Stopp");
         shakeButton.setBackgroundColor(Color.RED);
 

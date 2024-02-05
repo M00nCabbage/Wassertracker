@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,21 +25,24 @@ import java.util.concurrent.TimeUnit;
 public class Sounderkennung2 extends AppCompatActivity {
 
     private TextView text;
-    private Button soundButton;
+    private ImageButton soundButton;
+    private Button stopButton;
     private Button shakeButton;
     private static int MICROPHONE_PERMISSION_CODE=200;
     MediaRecorder mediaRecorder;
 
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
 
 
-                soundButton=findViewById(R.id.SoundButton);
-                soundButton.setBackgroundColor(Color.RED);
+                soundButton=findViewById(R.id.soundButton);
+                stopButton=findViewById(R.id.stopButton);
 
-                shakeButton=findViewById(R.id.ShakeButton);
+
+               // shakeButton=findViewById(R.id.ShakeButton);
                 shakeButton.setBackgroundColor(Color.GRAY);
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override

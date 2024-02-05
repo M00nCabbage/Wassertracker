@@ -5,28 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue1"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
 
     <Button
 
-        android:id="@+id/soundButton"
+        android:id="@+id/stopButton"
         android:layout_width="235dp"
         android:layout_height="227dp"
 
         android:layout_centerInParent="true"
         android:background="@drawable/costumbutton"
-        android:text="Start Tracking"
+        android:text="Stop Tracking"
         android:textColor="@color/white"
         android:textSize="25dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="92dp"
         tools:layout_editor_absoluteY="256dp" />
 
-  <FrameLayout
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_alignParentBottom="true"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"/>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="60dp"
@@ -36,5 +36,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-18dp"
         app:menu="@menu/bottomnav" />
+
+
 
 </RelativeLayout>
