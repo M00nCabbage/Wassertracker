@@ -23,9 +23,6 @@
             android:name=".Sounderkennung2"
             android:exported="false" />
         <activity
-            android:name=".Sounderkennung"
-            android:exported="false" />
-        <activity
             android:name=".NewVibrationsSensor"
             android:exported="false" />
         <activity
