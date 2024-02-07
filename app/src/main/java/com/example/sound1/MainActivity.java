@@ -8,13 +8,27 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.Manifest;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -27,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private Button shakeButton;
     private TextView textView;
     private static int MICROPHONE_PERMISSION_CODE=200;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         soundButton=findViewById(R.id.SoundButton);
         shakeButton=findViewById(R.id.ShakeButton);
 
+        queue = Volley.newRequestQueue(this);
         webrequest();
-        //Sounderkennung soundDetectionService= new Sounderkennung();
 
 
         soundButton.setOnClickListener(new View.OnClickListener() {
@@ -65,23 +80,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+private void webrequest(){
+    String URL="http://192.168.178.60:5000";
 
-    private void webrequest(){
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Request request=new Request.Builder().url("http://132.180.217.157:5000").build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                textView.setText("nicht mit Server verbunden");
-            }
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(com.android.volley.Request.Method.GET, URL, null,
+            new com.android.volley.Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    textView.setText(response.toString());
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.d("DEBUG", ""+error);
+        }
+    });
+    queue.add(jsonObjectRequest);
+}
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                //textView.setText(response.body().string());
-                textView.setText("mit google verbunden");
-            }
-        });
-    }
 
     private boolean isMicrophonePresent(){
         if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE)){
