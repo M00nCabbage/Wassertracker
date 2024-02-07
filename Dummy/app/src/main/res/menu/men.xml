@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title=" "/>
+    <item android:icon="@drawable/baseline_water_drop_24"
+        android:id="@+id/water"
+        android:title=""/>
+
+    <item   android:title=" "
+        android:id="@+id/feedback"
+        android:icon="@drawable/baseline_feedback_24"/>
+</menu>

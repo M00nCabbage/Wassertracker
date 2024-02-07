@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".MainActivity"
+    android:background="@color/blue1">
+
+
+    <TextView
+        android:id="@+id/shakeText"
+        android:layout_width="290dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/textViewCountDown"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/textViewCountDown"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stopButton"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="16dp"
+        android:text="01:00"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="40sp" />
+
+    <Button
+
+        android:id="@+id/stopButton"
+        android:layout_width="235dp"
+        android:layout_height="227dp"
+
+        android:layout_centerInParent="true"
+        android:background="@drawable/costumbutton"
+        android:text="Stop  Tracking"
+
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="256dp" />
+
+
+
+</RelativeLayout>
+
