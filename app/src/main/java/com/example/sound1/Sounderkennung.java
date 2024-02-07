@@ -81,10 +81,6 @@ public class Sounderkennung extends AppCompatActivity {
         }
         return 0;
     }
-    private void notifyNoSoundDetected() {
-
-        NotificationCostum.createNotification(this, "Water Reminder", "No sound detected for 1 minute.");
-    }
 
     @Override
     public void onDestroy() {
