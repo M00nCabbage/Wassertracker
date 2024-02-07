@@ -76,11 +76,6 @@ public class Sounderkennung2 extends AppCompatActivity {
 
         }
     }
-    //Sound von Skipy leran in Svm schmeisen
-    //Beschleunigung, Kompassapp livedemonstration
-    //evtl. statt Fouriertransformation mit Zeitreihe, FFt für Java
-    //Testdaten am Anfang von einer Stelle primär, später variable
-    //bis nächste Woche aufgezeichnete Daten+App
     public void startRecording(){
 
         try {

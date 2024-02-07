@@ -118,11 +118,4 @@ private void webrequest(){
 
         }
     }
-
-   /* protected void onDestroy() {
-        super.onDestroy();
-        Intent serviceIntent = new Intent(this,
-                SoundDetectionService.class);
-        stopService(serviceIntent);
-    }*/
 }
