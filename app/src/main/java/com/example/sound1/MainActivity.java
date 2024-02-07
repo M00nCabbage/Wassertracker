@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button soundButton;
     private Button shakeButton;
     private TextView textView;
+    private TextView amplitudeTextView;
     private static int MICROPHONE_PERMISSION_CODE=200;
     private RequestQueue queue;
 
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
         webrequest();
+        amplitudeTextView=findViewById(R.id.text);
+        //Sounderkennung soundDetectionService= new Sounderkennung();
 
 
         soundButton.setOnClickListener(new View.OnClickListener() {
